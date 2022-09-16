@@ -1,0 +1,63 @@
+clc
+close all
+clear
+
+%% initialize array
+
+RMSE_x = [0.4565 0.3435; 0.3499 0.3184; 0.2659, 0.1947; 0.2451 0.1235];
+RMSE_pitch = [9.5244 8.8880; 7.3712 5.5373; 5.6884, 1.6880; 5.1634 3.1116];
+aver_x = [0.1040 0.0377; 0.1260 0.0292; 0.0654 0.1284; 0.0478 0.1220];
+current = [1.2835 1.2569; 1.2900 1.2591; 1.2566 1.3271; 1.2498 1.2797];
+
+figure(1);
+
+subplot(1,2,1);
+hold on;
+grid on;
+
+c = bar(RMSE_x);
+c(1).FaceColor = 'k';
+c(2).FaceColor = [0.3010 0.7450 0.9330];
+set(gca, 'XTick', 1:4, 'XTickLabel', {'0.2500Hz', '0.3333Hz', '0.5000Hz', '0.7500Hz'});
+legend('Cascaded PID', 'Adaptive-FF');
+set(gca, 'FontSize', 10);
+ylabel('RMSE_{x} [m]')
+
+subplot(1,2,2);
+hold on;
+grid on;
+
+c = bar(RMSE_pitch);
+c(1).FaceColor = 'k';
+c(2).FaceColor = [0.3010 0.7450 0.9330];
+set(gca, 'XTick', 1:4, 'XTickLabel', {'0.2500Hz', '0.3333Hz', '0.5000Hz', '0.7500Hz'});
+legend('Cascaded PID', 'Adaptive-FF');
+set(gca, 'FontSize', 10);
+ylabel('RMSE_{\theta} [deg]')
+
+
+figure(2);
+
+subplot(1,2,1);
+hold on;
+grid on;
+
+c = bar(aver_x);
+c(1).FaceColor = 'k';
+c(2).FaceColor = [0.3010 0.7450 0.9330];
+set(gca, 'XTick', 1:4, 'XTickLabel', {'0.2500Hz', '0.3333Hz', '0.5000Hz', '0.7500Hz'});
+legend('Cascaded PID', 'Adaptive-FF');
+set(gca, 'FontSize', 10);
+ylabel('Absolute value of X_{error} average [m]')
+
+subplot(1,2,2);
+hold on;
+grid on;
+
+c = bar(current);
+c(1).FaceColor = 'k';
+c(2).FaceColor = [0.3010 0.7450 0.9330];
+set(gca, 'XTick', 1:4, 'XTickLabel', {'0.2500Hz', '0.3333Hz', '0.5000Hz', '0.7500Hz'});
+legend('Cascaded PID', 'Adaptive-FF');
+set(gca, 'FontSize', 10);
+ylabel('Average current [A]')
